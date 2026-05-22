@@ -38,7 +38,7 @@ function Index() {
 
   useEffect(() => {
     const obs = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id as Category); });
+      entries.forEach((e) => { if (e.isIntersecting) setActive((e.target as HTMLElement).id as Category); });
     }, { rootMargin: "-200px 0px -60% 0px", threshold: 0 });
     Object.values(refs.current).forEach((el) => el && obs.observe(el));
     return () => obs.disconnect();
