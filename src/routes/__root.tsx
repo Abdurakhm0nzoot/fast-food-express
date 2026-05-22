@@ -9,6 +9,12 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { I18nProvider } from "@/lib/i18n";
+import { CartDrawer } from "@/components/CartDrawer";
+import { LoginModal } from "@/components/LoginModal";
+import { AddressModal } from "@/components/AddressModal";
+import { CheckoutModal } from "@/components/CheckoutModal";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -108,7 +114,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <I18nProvider>
+        <Outlet />
+        <CartDrawer />
+        <LoginModal />
+        <AddressModal />
+        <CheckoutModal />
+        <Toaster richColors position="top-center" />
+      </I18nProvider>
     </QueryClientProvider>
   );
 }

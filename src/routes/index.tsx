@@ -23,7 +23,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   const { t, lang } = useI18n();
   const [active, setActive] = useState<Category>("popular");
-  const refs = useRef<Record<string, HTMLDivElement | null>>({});
+  const refs = useRef<Record<string, HTMLElement | null>>({});
 
   const grouped = useMemo(() => {
     const g: Record<Category, typeof products> = { popular: [], burgers: [], chicken: [], pizza: [], snacks: [], drinks: [], dessert: [] };
