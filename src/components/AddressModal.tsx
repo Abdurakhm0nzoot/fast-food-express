@@ -30,43 +30,57 @@ export function AddressModal() {
 
   // initialize map
   useEffect(() => {
-    if (!ready || !addressOpen || !mapEl.current) return;
-    const g = (window as any).google;
-    if (!mapInst.current) {
-      mapInst.current = new g.maps.Map(mapEl.current, {
-        center: pos,
-        zoom: 14,
-        disableDefaultUI: true,
-        zoomControl: true,
-        clickableIcons: false,
-      });
-      markerInst.current = new g.maps.Marker({
-        position: pos,
-        map: mapInst.current,
-        draggable: true,
-        animation: g.maps.Animation.DROP,
-      });
-      markerInst.current.addListener("dragend", () => {
-        const p = markerInst.current.getPosition();
-        const np = { lat: p.lat(), lng: p.lng() };
-        setPos(np);
-        fetchAddress(np);
-      });
-      mapInst.current.addListener("click", (e: any) => {
-        const np = { lat: e.latLng.lat(), lng: e.latLng.lng() };
-        markerInst.current.setPosition(np);
-        setPos(np);
-        fetchAddress(np);
-      });
-      if (!text) fetchAddress(pos);
-    }
-    // resize fix when modal opens
-    setTimeout(() => {
-      if (mapInst.current) {
-        (window as any).google.maps.event.trigger(mapInst.current, "resize");
+    if (!ready || !addressOpen) return;
+    let cancelled = false;
+    let tries = 0;
+    const tryInit = () => {
+      if (cancelled) return;
+      const el = mapEl.current;
+      const g = (window as any).google;
+      if (!el || !g?.maps) {
+        if (tries++ < 40) setTimeout(tryInit, 75);
+        return;
+      }
+      if (el.clientWidth === 0 || el.clientHeight === 0) {
+        if (tries++ < 40) setTimeout(tryInit, 75);
+        return;
+      }
+      if (!mapInst.current) {
+        mapInst.current = new g.maps.Map(el, {
+          center: pos,
+          zoom: 14,
+          disableDefaultUI: true,
+          zoomControl: true,
+          clickableIcons: false,
+        });
+        markerInst.current = new g.maps.Marker({
+          position: pos,
+          map: mapInst.current,
+          draggable: true,
+          animation: g.maps.Animation.DROP,
+        });
+        markerInst.current.addListener("dragend", () => {
+          const p = markerInst.current.getPosition();
+          const np = { lat: p.lat(), lng: p.lng() };
+          setPos(np);
+          fetchAddress(np);
+        });
+        mapInst.current.addListener("click", (e: any) => {
+          const np = { lat: e.latLng.lat(), lng: e.latLng.lng() };
+          markerInst.current.setPosition(np);
+          setPos(np);
+          fetchAddress(np);
+        });
+        if (!text) fetchAddress(pos);
+      } else {
+        g.maps.event.trigger(mapInst.current, "resize");
         mapInst.current.setCenter(pos);
       }
-    }, 200);
+    };
+    tryInit();
+    return () => {
+      cancelled = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready, addressOpen]);
 

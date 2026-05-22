@@ -13,6 +13,12 @@ import milkshake from "@/assets/p-milkshake.jpg";
 import heroBurger from "@/assets/hero-burger.jpg";
 import heroChicken from "@/assets/hero-chicken.jpg";
 import heroPizza from "@/assets/hero-pizza.jpg";
+import wings from "@/assets/p-wings.jpg";
+import lavash from "@/assets/p-lavash.jpg";
+import smash from "@/assets/p-smash.jpg";
+import pizza4cheese from "@/assets/p-pizza-4cheese.jpg";
+import onionRings from "@/assets/p-onion-rings.jpg";
+import lemonade from "@/assets/p-lemonade.jpg";
 
 export type Category = "popular" | "burgers" | "chicken" | "pizza" | "snacks" | "drinks" | "dessert";
 
@@ -154,6 +160,58 @@ export const products: Product[] = [
     price: 16000,
     name: { uz: "Vanilli sundae", ru: "Ванильный сандэй", en: "Vanilla Sundae" },
     desc: { uz: "Yumshoq vanilli muzqaymoq, shokolad sousi", ru: "Мягкое ванильное мороженое, шоколадный соус", en: "Soft vanilla ice cream, chocolate sauce" },
+  },
+  {
+    id: "les-ailes-wings",
+    category: "chicken",
+    image: wings,
+    price: 56000,
+    popular: true,
+    name: { uz: "Buffalo qanotlar (8 dona)", ru: "Крылышки Buffalo (8 шт)", en: "Buffalo Wings (8 pcs)" },
+    desc: { uz: "O'tkir buffalo sousda, ranch sous bilan", ru: "В остром соусе Buffalo, с соусом ранч", en: "In spicy buffalo sauce with ranch dip" },
+  },
+  {
+    id: "oqtepa-lavash",
+    category: "snacks",
+    image: lavash,
+    price: 35000,
+    popular: true,
+    name: { uz: "Mahsus lavash", ru: "Фирменный лаваш", en: "Signature Lavash" },
+    desc: { uz: "Grill tovuq, sabzavotlar, sirli sous, yupqa lavashda", ru: "Гриль курица, овощи, фирменный соус, тонкий лаваш", en: "Grilled chicken, veggies, secret sauce, thin lavash" },
+  },
+  {
+    id: "big-apple-smash",
+    category: "burgers",
+    image: smash,
+    price: 59000,
+    oldPrice: 65000,
+    popular: true,
+    name: { uz: "Big Smash Double", ru: "Биг Смэш Дабл", en: "Big Smash Double" },
+    desc: { uz: "Ikki smash kotlet, cheddar, karamellashgan piyoz, mahsus sous", ru: "Две смэш-котлеты, чеддер, карамелизованный лук, фирменный соус", en: "Two smashed patties, cheddar, caramelized onion, signature sauce" },
+  },
+  {
+    id: "bellissimo-4cheese",
+    category: "pizza",
+    image: pizza4cheese,
+    price: 98000,
+    name: { uz: "4 Pishloq pitsa", ru: "Пицца 4 Сыра", en: "4 Cheese Pizza" },
+    desc: { uz: "Motsarella, parmezan, cheddar, gorgonzola", ru: "Моцарелла, пармезан, чеддер, горгонзола", en: "Mozzarella, parmesan, cheddar, gorgonzola" },
+  },
+  {
+    id: "onion-rings",
+    category: "snacks",
+    image: onionRings,
+    price: 19000,
+    name: { uz: "Piyoz halqachalari", ru: "Луковые кольца", en: "Onion Rings" },
+    desc: { uz: "Qarsillama qoplam, mahsus sous bilan", ru: "Хрустящая корочка, с фирменным соусом", en: "Crispy coating with house sauce" },
+  },
+  {
+    id: "max-way-lemonade",
+    category: "drinks",
+    image: lemonade,
+    price: 18000,
+    name: { uz: "Limon-yalpiz limonad", ru: "Лимонад с мятой", en: "Mint Lemonade" },
+    desc: { uz: "Yangi siqilgan limon, yalpiz, muz", ru: "Свежий лимон, мята, лёд", en: "Fresh lemon, mint, ice" },
   },
 ];
 

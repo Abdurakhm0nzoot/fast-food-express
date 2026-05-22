@@ -14,12 +14,14 @@ export function LoginModal() {
   const [a2, setA2] = useState(true);
 
   const formatPhone = (raw: string) => {
-    const digits = raw.replace(/\D/g, "").slice(0, 9); // 9 digits after +998
+    let d = raw.replace(/\D/g, "");
+    if (d.startsWith("998")) d = d.slice(3);
+    d = d.slice(0, 9);
     let out = "+998";
-    if (digits.length > 0) out += " " + digits.slice(0, 2);
-    if (digits.length > 2) out += " " + digits.slice(2, 5);
-    if (digits.length > 5) out += " " + digits.slice(5, 7);
-    if (digits.length > 7) out += " " + digits.slice(7, 9);
+    if (d.length > 0) out += " " + d.slice(0, 2);
+    if (d.length > 2) out += " " + d.slice(2, 5);
+    if (d.length > 5) out += " " + d.slice(5, 7);
+    if (d.length > 7) out += " " + d.slice(7, 9);
     return out;
   };
 
