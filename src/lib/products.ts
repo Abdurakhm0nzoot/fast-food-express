@@ -13,6 +13,12 @@ import milkshake from "@/assets/p-milkshake.jpg";
 import heroBurger from "@/assets/hero-burger.jpg";
 import heroChicken from "@/assets/hero-chicken.jpg";
 import heroPizza from "@/assets/hero-pizza.jpg";
+import wings from "@/assets/p-wings.jpg";
+import lavash from "@/assets/p-lavash.jpg";
+import smash from "@/assets/p-smash.jpg";
+import pizza4cheese from "@/assets/p-pizza-4cheese.jpg";
+import onionRings from "@/assets/p-onion-rings.jpg";
+import lemonade from "@/assets/p-lemonade.jpg";
 
 export type Category = "popular" | "burgers" | "chicken" | "pizza" | "snacks" | "drinks" | "dessert";
 
