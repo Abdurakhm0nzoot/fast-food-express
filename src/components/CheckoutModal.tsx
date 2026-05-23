@@ -16,6 +16,8 @@ export function CheckoutModal() {
   const [note, setNote] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
+  const submitOrder = useServerFn(sendOrder);
+
   const total = useMemo(() => {
     const subtotal = items.reduce((s, i) => {
       const p = products.find((pp) => pp.id === i.id);
@@ -29,11 +31,35 @@ export function CheckoutModal() {
     if (!phone) { setLoginOpen(true); return; }
     if (!address) { setAddressOpen(true); return; }
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 800));
-    toast.success(t("checkout.success"));
-    clear();
-    setSubmitting(false);
-    setCheckoutOpen(false);
+    try {
+      const orderItems = items.map((i) => {
+        const p = products.find((pp) => pp.id === i.id)!;
+        return { name: p.name, qty: i.qty, price: p.price };
+      });
+      const res = await submitOrder({
+        data: {
+          phone,
+          address: address.formatted,
+          entrance: address.entrance ?? "",
+          lat: address.lat,
+          lng: address.lng,
+          note,
+          items: orderItems,
+          subtotal: total.subtotal,
+          delivery: total.delivery,
+          total: total.total,
+        },
+      });
+      toast.success(`${t("checkout.success")} (${res.orderId})`);
+      clear();
+      setCheckoutOpen(false);
+      setNote("");
+    } catch (e) {
+      console.error(e);
+      toast.error("Buyurtmani yuborib bo'lmadi. Qaytadan urinib ko'ring.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
