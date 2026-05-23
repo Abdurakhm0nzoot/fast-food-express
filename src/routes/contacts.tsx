@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Phone, Mail, MapPin } from "lucide-react";
 
 export const Route = createFileRoute("/contacts")({
-  head: () => ({ meta: [{ title: "Aloqa — FastBite" }, { name: "description", content: "FastBite bilan bog'lanish." }] }),
+  head: () => ({ meta: [{ title: "Aloqa — OlovFood" }, { name: "description", content: "OlovFood bilan bog'lanish." }] }),
   component: () => (
     <div className="min-h-screen flex flex-col">
       <Header />

@@ -78,7 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "FastBite — Fast food delivery in Tashkent" },
+      { title: "OlovFood — Fast food delivery in Tashkent" },
       { name: "description", content: "Order burgers, fried chicken, pizza & more. Fast delivery across Tashkent." },
       { property: "og:type", content: "website" },
     ],
