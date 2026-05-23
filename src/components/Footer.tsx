@@ -8,8 +8,8 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12 grid md:grid-cols-4 gap-8">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2 mb-3">
-            <div className="brand-gradient text-brand-foreground font-display text-2xl px-3 py-1 rounded-md tracking-wider">FAST</div>
-            <span className="font-display text-2xl tracking-wider">BITE</span>
+            <div className="brand-gradient text-brand-foreground font-display text-2xl px-3 py-1 rounded-md tracking-wider">OLOV</div>
+            <span className="font-display text-2xl tracking-wider">FOOD</span>
           </div>
           <p className="text-white/70 text-sm max-w-sm">{t("footer.tag")}</p>
           <div className="flex gap-3 mt-4">
