@@ -26,7 +26,7 @@ function Index() {
   const refs = useRef<Record<string, HTMLElement | null>>({});
 
   const grouped = useMemo(() => {
-    const g: Record<Category, typeof products> = { popular: [], burgers: [], chicken: [], pizza: [], snacks: [], drinks: [], dessert: [] };
+    const g: Record<Category, typeof products> = { popular: [], burgers: [], chicken: [], pizza: [], lavash: [], snacks: [], drinks: [], dessert: [] };
     products.forEach((p) => { g[p.category].push(p); if (p.popular) g.popular.push(p); });
     return g;
   }, []);
