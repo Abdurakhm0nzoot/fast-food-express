@@ -25,9 +25,9 @@ export function Header() {
       <div className="container mx-auto px-4 h-16 flex items-center gap-3 md:gap-6">
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <div className="brand-gradient text-brand-foreground font-display text-xl px-3 py-1 rounded-md tracking-wider">
-            FAST
+            OLOV
           </div>
-          <span className="hidden sm:inline font-display text-xl tracking-wider text-brand-dark">BITE</span>
+          <span className="hidden sm:inline font-display text-xl tracking-wider text-brand-dark">FOOD</span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-5 text-sm font-medium text-foreground/80">
