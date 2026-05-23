@@ -31,7 +31,7 @@ export function Footer() {
           <h4 className="font-display text-lg mb-3">{t("nav.contacts")}</h4>
           <ul className="space-y-1.5 text-sm text-white/70">
             <li>+998 71 200-00-00</li>
-            <li>info@fastbite.uz</li>
+            <li>info@olovfood.uz</li>
             <li>Toshkent, Amir Temur 1</li>
           </ul>
         </div>
