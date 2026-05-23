@@ -7,7 +7,7 @@ const icons: Record<Category, typeof Flame> = {
   burgers: Beef,
   chicken: Drumstick,
   pizza: Pizza,
-  lavash: Wrap,
+  lavash: Soup,
   snacks: Sandwich,
   drinks: CupSoda,
   dessert: IceCream,
