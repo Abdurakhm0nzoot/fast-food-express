@@ -34,6 +34,7 @@ export const dict = {
   "cat.burgers": { uz: "Burgerlar", ru: "Бургеры", en: "Burgers" },
   "cat.chicken": { uz: "Tovuq", ru: "Курица", en: "Chicken" },
   "cat.pizza": { uz: "Pitsa", ru: "Пицца", en: "Pizza" },
+  "cat.lavash": { uz: "Lavash", ru: "Лаваш", en: "Lavash" },
   "cat.snacks": { uz: "Yengil taomlar", ru: "Закуски", en: "Snacks" },
   "cat.drinks": { uz: "Ichimliklar", ru: "Напитки", en: "Drinks" },
   "cat.dessert": { uz: "Desert", ru: "Десерты", en: "Desserts" },

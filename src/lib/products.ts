@@ -15,12 +15,23 @@ import heroChicken from "@/assets/hero-chicken.jpg";
 import heroPizza from "@/assets/hero-pizza.jpg";
 import wings from "@/assets/p-wings.jpg";
 import lavash from "@/assets/p-lavash.jpg";
-import smash from "@/assets/p-smash.jpg";
 import pizza4cheese from "@/assets/p-pizza-4cheese.jpg";
 import onionRings from "@/assets/p-onion-rings.jpg";
 import lemonade from "@/assets/p-lemonade.jpg";
+import strips from "@/assets/p-strips.jpg";
+import wingsSpicy from "@/assets/p-wings-spicy.jpg";
+import pizzaHawaiian from "@/assets/p-pizza-hawaiian.jpg";
+import pizzaBbq from "@/assets/p-pizza-bbq.jpg";
+import pizza4seasons from "@/assets/p-pizza-4seasons.jpg";
+import pizzaStroganoff from "@/assets/p-pizza-stroganoff.jpg";
+import pizzaCheese from "@/assets/p-pizza-cheese.jpg";
+import lavashBig from "@/assets/p-lavash-big.jpg";
+import lavashMini from "@/assets/p-lavash-mini.jpg";
+import lavashCheese from "@/assets/p-lavash-cheese.jpg";
+import lavashLyulya from "@/assets/p-lavash-lyulya.jpg";
+import lavashHot from "@/assets/p-lavash-hot.jpg";
 
-export type Category = "popular" | "burgers" | "chicken" | "pizza" | "snacks" | "drinks" | "dessert";
+export type Category = "popular" | "burgers" | "chicken" | "pizza" | "lavash" | "snacks" | "drinks" | "dessert";
 
 export type Product = {
   id: string;
@@ -34,6 +45,7 @@ export type Product = {
 };
 
 export const products: Product[] = [
+  // BURGERS
   {
     id: "macho-double",
     category: "burgers",
@@ -61,6 +73,8 @@ export const products: Product[] = [
     name: { uz: "Spicy Chicken Burger", ru: "Спайси Чикен Бургер", en: "Spicy Chicken Burger" },
     desc: { uz: "O'tkir tovuq filesi, brioche bulochka, mayonez", ru: "Острое куриное филе, бриошь, майонез", en: "Spicy chicken fillet, brioche bun, mayo" },
   },
+
+  // CHICKEN
   {
     id: "hot-crispy",
     category: "chicken",
@@ -88,11 +102,62 @@ export const products: Product[] = [
     desc: { uz: "Sousli, bolalar uchun ham mos", ru: "С соусом, подходит и детям", en: "With sauce, kids friendly" },
   },
   {
+    id: "strips-3",
+    category: "chicken",
+    image: strips,
+    price: 22000,
+    name: { uz: "Stripslar (3 dona)", ru: "Стрипсы (3 шт)", en: "Strips (3 pcs)" },
+    desc: { uz: "Tovuq filesi panirovkada (3 dona, 94g)", ru: "Курица в панировке (3 шт, 94г)", en: "Breaded chicken fillet (3 pcs, 94g)" },
+  },
+  {
+    id: "strips-6",
+    category: "chicken",
+    image: strips,
+    price: 33000,
+    name: { uz: "Stripslar (6 dona)", ru: "Стрипсы (6 шт)", en: "Strips (6 pcs)" },
+    desc: { uz: "Tovuq filesi panirovkada (6 dona, 184g)", ru: "Курица в панировке (6 шт, 184г)", en: "Breaded chicken fillet (6 pcs, 184g)" },
+  },
+  {
+    id: "spicy-wings-3",
+    category: "chicken",
+    image: wingsSpicy,
+    price: 22000,
+    name: { uz: "O'tkir qanotlar (3 dona)", ru: "Острые крылышки (3 шт)", en: "Spicy Wings (3 pcs)" },
+    desc: { uz: "Nordon-shirin o'tkir sousda qovurilgan qanotlar (160g)", ru: "Крылышки в кисло-сладком остром соусе (160г)", en: "Wings in sweet-sour spicy sauce (160g)" },
+  },
+  {
+    id: "spicy-wings-6",
+    category: "chicken",
+    image: wingsSpicy,
+    price: 40000,
+    popular: true,
+    name: { uz: "O'tkir qanotlar (6 dona)", ru: "Острые крылышки (6 шт)", en: "Spicy Wings (6 pcs)" },
+    desc: { uz: "Nordon-shirin o'tkir sousda qovurilgan qanotlar (320g)", ru: "Крылышки в кисло-сладком остром соусе (320г)", en: "Wings in sweet-sour spicy sauce (320g)" },
+  },
+  {
+    id: "wings-3",
+    category: "chicken",
+    image: wings,
+    price: 21000,
+    name: { uz: "Qanotlar (3 dona)", ru: "Крылышки (3 шт)", en: "Wings (3 pcs)" },
+    desc: { uz: "Qovurilgan tovuq qanotlari (870g uchun nisbat)", ru: "Жареные куриные крылышки", en: "Fried chicken wings" },
+  },
+  {
+    id: "wings-6",
+    category: "chicken",
+    image: wings,
+    price: 38000,
+    name: { uz: "Qanotlar (6 dona)", ru: "Крылышки (6 шт)", en: "Wings (6 pcs)" },
+    desc: { uz: "Qovurilgan tovuq qanotlari (1 kg)", ru: "Жареные куриные крылышки (1 кг)", en: "Fried chicken wings (1 kg)" },
+  },
+
+  // PIZZA
+  {
     id: "pizza-margherita",
     category: "pizza",
     image: pizzaMargherita,
     price: 75000,
-    name: { uz: "Margarita pitsa", ru: "Пицца Маргарита", en: "Margherita Pizza" },
+    name: { uz: "Margarita 30sm", ru: "Маргарита 30см", en: "Margherita 30cm" },
     desc: { uz: "Pomidor sousi, motsarella, rayhon", ru: "Томатный соус, моцарелла, базилик", en: "Tomato sauce, mozzarella, basil" },
   },
   {
@@ -101,9 +166,159 @@ export const products: Product[] = [
     image: heroPizza,
     price: 92000,
     popular: true,
-    name: { uz: "Pepperoni pitsa", ru: "Пицца Пепперони", en: "Pepperoni Pizza" },
+    name: { uz: "Pepperoni 30sm", ru: "Пепперони 30см", en: "Pepperoni 30cm" },
     desc: { uz: "Pepperoni kolbasa, qo'sh pishloq, achchiq qalampir", ru: "Колбаса пепперони, двойной сыр, перчик", en: "Pepperoni sausage, double cheese, chili" },
   },
+  {
+    id: "pizza-cheese",
+    category: "pizza",
+    image: pizzaCheese,
+    price: 75000,
+    name: { uz: "Pishloqli 30sm", ru: "Сырная 30см", en: "Cheese 30cm" },
+    desc: { uz: "Motsarella, pomidor sousi, oregano", ru: "Моцарелла, томатный соус, орегано", en: "Mozzarella, tomato sauce, oregano" },
+  },
+  {
+    id: "pizza-hawaiian",
+    category: "pizza",
+    image: pizzaHawaiian,
+    price: 85000,
+    name: { uz: "Havayyu 30sm", ru: "Гавайская 30см", en: "Hawaiian 30cm" },
+    desc: { uz: "Vetchina, ananas, motsarella", ru: "Ветчина, ананас, моцарелла", en: "Ham, pineapple, mozzarella" },
+  },
+  {
+    id: "pizza-4cheese",
+    category: "pizza",
+    image: pizza4cheese,
+    price: 98000,
+    name: { uz: "4 Pishloq 30sm", ru: "4 Сыра 30см", en: "4 Cheese 30cm" },
+    desc: { uz: "Motsarella, parmezan, cheddar, gorgonzola", ru: "Моцарелла, пармезан, чеддер, горгонзола", en: "Mozzarella, parmesan, cheddar, gorgonzola" },
+  },
+  {
+    id: "pizza-4seasons",
+    category: "pizza",
+    image: pizza4seasons,
+    price: 95000,
+    name: { uz: "4 Fasl 30sm", ru: "4 Сезона 30см", en: "4 Seasons 30cm" },
+    desc: { uz: "Qo'ziqorin, vetchina, zaytun, qalampir", ru: "Грибы, ветчина, оливки, перец", en: "Mushrooms, ham, olives, peppers" },
+  },
+  {
+    id: "pizza-bbq",
+    category: "pizza",
+    image: pizzaBbq,
+    price: 99000,
+    popular: true,
+    name: { uz: "Chicken BBQ 30sm", ru: "Чикен BBQ 30см", en: "Chicken BBQ 30cm" },
+    desc: { uz: "Grill tovuq, qizil piyoz, BBQ sous", ru: "Гриль курица, красный лук, BBQ соус", en: "Grilled chicken, red onion, BBQ sauce" },
+  },
+  {
+    id: "pizza-stroganoff",
+    category: "pizza",
+    image: pizzaStroganoff,
+    price: 92000,
+    name: { uz: "Stroganoff 30sm", ru: "Строганов 30см", en: "Stroganoff 30cm" },
+    desc: { uz: "Mol go'sht, qo'ziqorin, smetana sous", ru: "Говядина, грибы, сметанный соус", en: "Beef, mushrooms, sour cream sauce" },
+  },
+  {
+    id: "pizza-margherita-25",
+    category: "pizza",
+    image: pizzaMargherita,
+    price: 55000,
+    name: { uz: "Margarita 25sm", ru: "Маргарита 25см", en: "Margherita 25cm" },
+    desc: { uz: "Pomidor sousi, motsarella, rayhon", ru: "Томатный соус, моцарелла, базилик", en: "Tomato sauce, mozzarella, basil" },
+  },
+  {
+    id: "pizza-pepperoni-25",
+    category: "pizza",
+    image: heroPizza,
+    price: 68000,
+    name: { uz: "Pepperoni 25sm", ru: "Пепперони 25см", en: "Pepperoni 25cm" },
+    desc: { uz: "Pepperoni, qo'sh pishloq", ru: "Пепперони, двойной сыр", en: "Pepperoni, double cheese" },
+  },
+  {
+    id: "pizza-bbq-25",
+    category: "pizza",
+    image: pizzaBbq,
+    price: 72000,
+    name: { uz: "Chicken BBQ 25sm", ru: "Чикен BBQ 25см", en: "Chicken BBQ 25cm" },
+    desc: { uz: "Grill tovuq, BBQ sous, piyoz", ru: "Гриль курица, BBQ соус, лук", en: "Grilled chicken, BBQ sauce, onion" },
+  },
+
+  // LAVASH
+  {
+    id: "lavash-big",
+    category: "lavash",
+    image: lavashBig,
+    price: 35000,
+    popular: true,
+    name: { uz: "Tovuqli katta lavash", ru: "Куриный большой лаваш", en: "Big Chicken Lavash" },
+    desc: { uz: "Grill tovuq, sabzavotlar, mahsus sous, yupqa lavashda", ru: "Гриль курица, овощи, фирменный соус, тонкий лаваш", en: "Grilled chicken, veggies, signature sauce, thin lavash" },
+  },
+  {
+    id: "lavash-mini",
+    category: "lavash",
+    image: lavashMini,
+    price: 29000,
+    name: { uz: "Tovuqli mini lavash", ru: "Куриный мини лаваш", en: "Mini Chicken Lavash" },
+    desc: { uz: "Yengilroq porsiya, grill tovuq, sabzavot", ru: "Лёгкая порция, гриль курица, овощи", en: "Lighter portion, grilled chicken, veggies" },
+  },
+  {
+    id: "lavash-cheese-big",
+    category: "lavash",
+    image: lavashCheese,
+    price: 38000,
+    name: { uz: "Tovuqli pishloqli katta lavash", ru: "Куриный сырный большой лаваш", en: "Big Cheese Chicken Lavash" },
+    desc: { uz: "Grill tovuq, qo'sh pishloq, sabzavot", ru: "Гриль курица, двойной сыр, овощи", en: "Grilled chicken, double cheese, veggies" },
+  },
+  {
+    id: "lavash-cheddar",
+    category: "lavash",
+    image: lavashCheese,
+    price: 37000,
+    name: { uz: "Tovuqli cheddar lavash", ru: "Куриный чеддер лаваш", en: "Chicken Cheddar Lavash" },
+    desc: { uz: "Grill tovuq, eritilgan cheddar, sabzavot", ru: "Гриль курица, плавленый чеддер, овощи", en: "Grilled chicken, melted cheddar, veggies" },
+  },
+  {
+    id: "lavash-big-doner",
+    category: "lavash",
+    image: lavashBig,
+    price: 39000,
+    name: { uz: "Tovuqli big doner", ru: "Куриный биг донер", en: "Chicken Big Doner" },
+    desc: { uz: "Katta porsiya doner, grill tovuq, sous", ru: "Большая порция донера, гриль курица, соус", en: "Big doner portion, grilled chicken, sauce" },
+  },
+  {
+    id: "lavash-lyulya-doner",
+    category: "lavash",
+    image: lavashLyulya,
+    price: 33000,
+    name: { uz: "Tovuqli lyulya doner", ru: "Куриный люля донер", en: "Chicken Lyulya Doner" },
+    desc: { uz: "Lyulya kabob, sabzavot, sous", ru: "Люля-кебаб, овощи, соус", en: "Lyulya kebab, veggies, sauce" },
+  },
+  {
+    id: "lavash-shaurma",
+    category: "lavash",
+    image: shawarma,
+    price: 29000,
+    name: { uz: "Tovuqli shaurma", ru: "Куриная шаурма", en: "Chicken Shawarma" },
+    desc: { uz: "Klassik shaurma — tovuq, sabzavot, sous", ru: "Классическая шаурма — курица, овощи, соус", en: "Classic shawarma — chicken, veggies, sauce" },
+  },
+  {
+    id: "lavash-hot",
+    category: "lavash",
+    image: lavashHot,
+    price: 39000,
+    name: { uz: "Tovuqli hot lavash", ru: "Куриный хот лаваш", en: "Hot Chicken Lavash" },
+    desc: { uz: "O'tkir tovuq, achchiq sous, sabzavot", ru: "Острая курица, острый соус, овощи", en: "Spicy chicken, hot sauce, veggies" },
+  },
+  {
+    id: "lavash-classic",
+    category: "lavash",
+    image: lavash,
+    price: 32000,
+    name: { uz: "Klassik lavash", ru: "Классический лаваш", en: "Classic Lavash" },
+    desc: { uz: "Grill tovuq, salat, pomidor, mayonez", ru: "Гриль курица, салат, помидор, майонез", en: "Grilled chicken, lettuce, tomato, mayo" },
+  },
+
+  // SNACKS
   {
     id: "fries",
     category: "snacks",
@@ -112,14 +327,6 @@ export const products: Product[] = [
     popular: true,
     name: { uz: "Frantsuz kartoshkasi", ru: "Картофель фри", en: "French Fries" },
     desc: { uz: "Oltin rangli, tuzlangan, qarsillama", ru: "Золотистый, солёный, хрустящий", en: "Golden, salted, crispy" },
-  },
-  {
-    id: "shawarma",
-    category: "snacks",
-    image: shawarma,
-    price: 32000,
-    name: { uz: "Tovuq shaurma", ru: "Шаурма с курицей", en: "Chicken Shawarma" },
-    desc: { uz: "Lavashda tovuq, sabzavotlar va sous", ru: "Курица, овощи и соус в лаваше", en: "Chicken, veggies and sauce in lavash" },
   },
   {
     id: "hotdog",
@@ -138,6 +345,16 @@ export const products: Product[] = [
     desc: { uz: "Qovurilgan tovuq, kruton, parmezan", ru: "Жареная курица, крутоны, пармезан", en: "Grilled chicken, croutons, parmesan" },
   },
   {
+    id: "onion-rings",
+    category: "snacks",
+    image: onionRings,
+    price: 19000,
+    name: { uz: "Piyoz halqachalari", ru: "Луковые кольца", en: "Onion Rings" },
+    desc: { uz: "Qarsillama qoplam, mahsus sous bilan", ru: "Хрустящая корочка, с фирменным соусом", en: "Crispy coating with house sauce" },
+  },
+
+  // DRINKS
+  {
     id: "cola",
     category: "drinks",
     image: cola,
@@ -154,6 +371,16 @@ export const products: Product[] = [
     desc: { uz: "Sut, muzqaymoq, shokolad sousi", ru: "Молоко, мороженое, шоколадный соус", en: "Milk, ice cream, chocolate syrup" },
   },
   {
+    id: "lemonade",
+    category: "drinks",
+    image: lemonade,
+    price: 18000,
+    name: { uz: "Limon-yalpiz limonad", ru: "Лимонад с мятой", en: "Mint Lemonade" },
+    desc: { uz: "Yangi siqilgan limon, yalpiz, muz", ru: "Свежий лимон, мята, лёд", en: "Fresh lemon, mint, ice" },
+  },
+
+  // DESSERT
+  {
     id: "icecream",
     category: "dessert",
     image: icecream,
@@ -161,61 +388,9 @@ export const products: Product[] = [
     name: { uz: "Vanilli sundae", ru: "Ванильный сандэй", en: "Vanilla Sundae" },
     desc: { uz: "Yumshoq vanilli muzqaymoq, shokolad sousi", ru: "Мягкое ванильное мороженое, шоколадный соус", en: "Soft vanilla ice cream, chocolate sauce" },
   },
-  {
-    id: "les-ailes-wings",
-    category: "chicken",
-    image: wings,
-    price: 56000,
-    popular: true,
-    name: { uz: "Buffalo qanotlar (8 dona)", ru: "Крылышки Buffalo (8 шт)", en: "Buffalo Wings (8 pcs)" },
-    desc: { uz: "O'tkir buffalo sousda, ranch sous bilan", ru: "В остром соусе Buffalo, с соусом ранч", en: "In spicy buffalo sauce with ranch dip" },
-  },
-  {
-    id: "oqtepa-lavash",
-    category: "snacks",
-    image: lavash,
-    price: 35000,
-    popular: true,
-    name: { uz: "Mahsus lavash", ru: "Фирменный лаваш", en: "Signature Lavash" },
-    desc: { uz: "Grill tovuq, sabzavotlar, sirli sous, yupqa lavashda", ru: "Гриль курица, овощи, фирменный соус, тонкий лаваш", en: "Grilled chicken, veggies, secret sauce, thin lavash" },
-  },
-  {
-    id: "big-apple-smash",
-    category: "burgers",
-    image: smash,
-    price: 59000,
-    oldPrice: 65000,
-    popular: true,
-    name: { uz: "Big Smash Double", ru: "Биг Смэш Дабл", en: "Big Smash Double" },
-    desc: { uz: "Ikki smash kotlet, cheddar, karamellashgan piyoz, mahsus sous", ru: "Две смэш-котлеты, чеддер, карамелизованный лук, фирменный соус", en: "Two smashed patties, cheddar, caramelized onion, signature sauce" },
-  },
-  {
-    id: "bellissimo-4cheese",
-    category: "pizza",
-    image: pizza4cheese,
-    price: 98000,
-    name: { uz: "4 Pishloq pitsa", ru: "Пицца 4 Сыра", en: "4 Cheese Pizza" },
-    desc: { uz: "Motsarella, parmezan, cheddar, gorgonzola", ru: "Моцарелла, пармезан, чеддер, горгонзола", en: "Mozzarella, parmesan, cheddar, gorgonzola" },
-  },
-  {
-    id: "onion-rings",
-    category: "snacks",
-    image: onionRings,
-    price: 19000,
-    name: { uz: "Piyoz halqachalari", ru: "Луковые кольца", en: "Onion Rings" },
-    desc: { uz: "Qarsillama qoplam, mahsus sous bilan", ru: "Хрустящая корочка, с фирменным соусом", en: "Crispy coating with house sauce" },
-  },
-  {
-    id: "max-way-lemonade",
-    category: "drinks",
-    image: lemonade,
-    price: 18000,
-    name: { uz: "Limon-yalpiz limonad", ru: "Лимонад с мятой", en: "Mint Lemonade" },
-    desc: { uz: "Yangi siqilgan limon, yalpiz, muz", ru: "Свежий лимон, мята, лёд", en: "Fresh lemon, mint, ice" },
-  },
 ];
 
-export const categoryOrder: Category[] = ["popular", "burgers", "chicken", "pizza", "snacks", "drinks", "dessert"];
+export const categoryOrder: Category[] = ["popular", "burgers", "chicken", "pizza", "lavash", "snacks", "drinks", "dessert"];
 
 export const formatUZS = (n: number) =>
   new Intl.NumberFormat("ru-RU").format(n) + " so'm";
