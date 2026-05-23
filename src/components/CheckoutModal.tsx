@@ -1,6 +1,5 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useApp } from "@/lib/store";
 import { useI18n } from "@/lib/i18n";
@@ -8,6 +7,8 @@ import { formatUZS, products } from "@/lib/products";
 import { useMemo, useState } from "react";
 import { MapPin, Clock, Check, Phone } from "lucide-react";
 import { toast } from "sonner";
+import { useServerFn } from "@tanstack/react-start";
+import { sendOrder } from "@/lib/telegram.functions";
 
 export function CheckoutModal() {
   const { t } = useI18n();
