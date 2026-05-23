@@ -11,9 +11,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "FastBite — Tez yetkazib berish | Burger, Tovuq, Pitsa" },
+      { title: "OlovFood — Tez yetkazib berish | Burger, Tovuq, Pitsa" },
       { name: "description", content: "Toshkent bo'ylab 45 daqiqada yetkazib berish. Burgerlar, qovurilgan tovuq, pitsa va ko'p narsa." },
-      { property: "og:title", content: "FastBite — Fast food delivery" },
+      { property: "og:title", content: "OlovFood — Fast food delivery" },
       { property: "og:description", content: "Order burgers, fried chicken, pizza & more in Tashkent." },
     ],
   }),

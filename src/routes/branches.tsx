@@ -11,7 +11,7 @@ const branches = [
 ];
 
 export const Route = createFileRoute("/branches")({
-  head: () => ({ meta: [{ title: "Filiallar — FastBite" }, { name: "description", content: "FastBite filiallari Toshkent bo'ylab." }] }),
+  head: () => ({ meta: [{ title: "Filiallar — OlovFood" }, { name: "description", content: "OlovFood filiallari Toshkent bo'ylab." }] }),
   component: () => (
     <div className="min-h-screen flex flex-col">
       <Header />

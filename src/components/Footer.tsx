@@ -8,8 +8,8 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12 grid md:grid-cols-4 gap-8">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2 mb-3">
-            <div className="brand-gradient text-brand-foreground font-display text-2xl px-3 py-1 rounded-md tracking-wider">FAST</div>
-            <span className="font-display text-2xl tracking-wider">BITE</span>
+            <div className="brand-gradient text-brand-foreground font-display text-2xl px-3 py-1 rounded-md tracking-wider">OLOV</div>
+            <span className="font-display text-2xl tracking-wider">FOOD</span>
           </div>
           <p className="text-white/70 text-sm max-w-sm">{t("footer.tag")}</p>
           <div className="flex gap-3 mt-4">
@@ -31,14 +31,14 @@ export function Footer() {
           <h4 className="font-display text-lg mb-3">{t("nav.contacts")}</h4>
           <ul className="space-y-1.5 text-sm text-white/70">
             <li>+998 71 200-00-00</li>
-            <li>info@fastbite.uz</li>
+            <li>info@olovfood.uz</li>
             <li>Toshkent, Amir Temur 1</li>
           </ul>
         </div>
       </div>
       <div className="border-t border-white/10">
         <div className="container mx-auto px-4 py-4 text-center text-xs text-white/50">
-          © {new Date().getFullYear()} FastBite. {t("footer.rights")}.
+          © {new Date().getFullYear()} OlovFood. {t("footer.rights")}.
         </div>
       </div>
     </footer>
