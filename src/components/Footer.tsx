@@ -38,7 +38,7 @@ export function Footer() {
       </div>
       <div className="border-t border-white/10">
         <div className="container mx-auto px-4 py-4 text-center text-xs text-white/50">
-          © {new Date().getFullYear()} FastBite. {t("footer.rights")}.
+          © {new Date().getFullYear()} OlovFood. {t("footer.rights")}.
         </div>
       </div>
     </footer>
