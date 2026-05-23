@@ -1,12 +1,13 @@
 import { useI18n } from "@/lib/i18n";
 import { categoryOrder, type Category } from "@/lib/products";
-import { Beef, Drumstick, Pizza, IceCream, Sandwich, CupSoda, Flame } from "lucide-react";
+import { Beef, Drumstick, Pizza, IceCream, Sandwich, CupSoda, Flame, Wrap } from "lucide-react";
 
 const icons: Record<Category, typeof Flame> = {
   popular: Flame,
   burgers: Beef,
   chicken: Drumstick,
   pizza: Pizza,
+  lavash: Wrap,
   snacks: Sandwich,
   drinks: CupSoda,
   dessert: IceCream,
