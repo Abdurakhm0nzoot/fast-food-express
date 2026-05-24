@@ -39,6 +39,10 @@ async function sendTelegram(chatId: string, text: string) {
   }
 }
 
+export async function sendTelegramMessage(chatId: string | number, text: string) {
+  await sendTelegram(String(chatId), text);
+}
+
 function fmtUZS(n: number) {
   return n.toLocaleString("ru-RU") + " so'm";
 }
