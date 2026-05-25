@@ -20,9 +20,7 @@ const OrderSchema = z.object({
   total: z.number().int().min(0),
 });
 
-async function sendTelegram(chatId: string, text: string) {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  if (!token) throw new Error("TELEGRAM_BOT_TOKEN is not configured");
+async function sendTelegram(token: string, chatId: string, text: string) {
   const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -40,8 +38,11 @@ async function sendTelegram(chatId: string, text: string) {
 }
 
 export async function sendTelegramMessage(chatId: string | number, text: string) {
-  await sendTelegram(String(chatId), text);
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  if (!token) throw new Error("TELEGRAM_BOT_TOKEN is not configured");
+  await sendTelegram(token, String(chatId), text);
 }
+
 
 function fmtUZS(n: number) {
   return n.toLocaleString("ru-RU") + " so'm";
