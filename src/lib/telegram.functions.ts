@@ -20,9 +20,7 @@ const OrderSchema = z.object({
   total: z.number().int().min(0),
 });
 
-async function sendTelegram(chatId: string, text: string) {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  if (!token) throw new Error("TELEGRAM_BOT_TOKEN is not configured");
+async function sendTelegram(token: string, chatId: string, text: string) {
   const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -40,8 +38,11 @@ async function sendTelegram(chatId: string, text: string) {
 }
 
 export async function sendTelegramMessage(chatId: string | number, text: string) {
-  await sendTelegram(String(chatId), text);
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  if (!token) throw new Error("TELEGRAM_BOT_TOKEN is not configured");
+  await sendTelegram(token, String(chatId), text);
 }
+
 
 function fmtUZS(n: number) {
   return n.toLocaleString("ru-RU") + " so'm";
@@ -50,8 +51,10 @@ function fmtUZS(n: number) {
 export const sendOrder = createServerFn({ method: "POST" })
   .inputValidator((d: unknown) => OrderSchema.parse(d))
   .handler(async ({ data }) => {
+    const mainToken = process.env.TELEGRAM_BOT_TOKEN;
     const adminChat = process.env.TELEGRAM_ADMIN_CHAT_ID;
-    if (!adminChat) throw new Error("TELEGRAM_ADMIN_CHAT_ID is not configured");
+    const sellerToken = process.env.TELEGRAM_SELLER_BOT_TOKEN;
+    const sellerChat = process.env.TELEGRAM_SELLER_CHAT_ID;
 
     const orderId = "OL-" + Date.now().toString().slice(-6);
     const lines = data.items
@@ -75,6 +78,20 @@ export const sendOrder = createServerFn({ method: "POST" })
       `Yetkazib berish: ${data.delivery === 0 ? "Bepul" : fmtUZS(data.delivery)}\n` +
       `<b>Jami: ${fmtUZS(data.total)}</b>`;
 
-    await sendTelegram(adminChat, text);
+    const tasks: Promise<unknown>[] = [];
+    if (mainToken && adminChat) tasks.push(sendTelegram(mainToken, adminChat, text));
+    if (sellerToken && sellerChat) tasks.push(sendTelegram(sellerToken, sellerChat, text));
+
+    if (tasks.length === 0) {
+      throw new Error("Telegram bot tokens/chat IDs are not configured");
+    }
+
+    const results = await Promise.allSettled(tasks);
+    const failed = results.filter((r) => r.status === "rejected");
+    if (failed.length === results.length) {
+      throw new Error("All Telegram deliveries failed");
+    }
+
     return { ok: true, orderId };
   });
+
