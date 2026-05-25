@@ -34,7 +34,7 @@ export function CheckoutModal() {
     try {
       const orderItems = items.map((i) => {
         const p = products.find((pp) => pp.id === i.id)!;
-        return { name: p.name, qty: i.qty, price: p.price };
+        return { name: p.name.uz, qty: i.qty, price: p.price };
       });
       const res = await submitOrder({
         data: {
