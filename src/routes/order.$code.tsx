@@ -18,6 +18,7 @@ type OrderRow = {
   subtotal: number;
   delivery: number;
   total: number;
+  customer_chat_id: number | null;
   created_at: string;
 };
 
