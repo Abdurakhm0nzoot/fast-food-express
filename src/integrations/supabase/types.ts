@@ -14,7 +14,96 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      orders: {
+        Row: {
+          address: string
+          admin_message_id: number | null
+          created_at: string
+          customer_chat_id: number | null
+          delivery: number
+          entrance: string | null
+          id: string
+          items: Json
+          lat: number | null
+          lng: number | null
+          note: string | null
+          order_code: string
+          phone: string
+          seller_message_id: number | null
+          source: string
+          status: Database["public"]["Enums"]["order_status"]
+          subtotal: number
+          total: number
+          updated_at: string
+        }
+        Insert: {
+          address: string
+          admin_message_id?: number | null
+          created_at?: string
+          customer_chat_id?: number | null
+          delivery?: number
+          entrance?: string | null
+          id?: string
+          items: Json
+          lat?: number | null
+          lng?: number | null
+          note?: string | null
+          order_code: string
+          phone: string
+          seller_message_id?: number | null
+          source?: string
+          status?: Database["public"]["Enums"]["order_status"]
+          subtotal?: number
+          total?: number
+          updated_at?: string
+        }
+        Update: {
+          address?: string
+          admin_message_id?: number | null
+          created_at?: string
+          customer_chat_id?: number | null
+          delivery?: number
+          entrance?: string | null
+          id?: string
+          items?: Json
+          lat?: number | null
+          lng?: number | null
+          note?: string | null
+          order_code?: string
+          phone?: string
+          seller_message_id?: number | null
+          source?: string
+          status?: Database["public"]["Enums"]["order_status"]
+          subtotal?: number
+          total?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      telegram_links: {
+        Row: {
+          bot: string
+          chat_id: number
+          created_at: string
+          id: string
+          phone: string
+        }
+        Insert: {
+          bot?: string
+          chat_id: number
+          created_at?: string
+          id?: string
+          phone: string
+        }
+        Update: {
+          bot?: string
+          chat_id?: number
+          created_at?: string
+          id?: string
+          phone?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +112,13 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      order_status:
+        | "new"
+        | "accepted"
+        | "preparing"
+        | "on_way"
+        | "delivered"
+        | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +245,15 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      order_status: [
+        "new",
+        "accepted",
+        "preparing",
+        "on_way",
+        "delivered",
+        "cancelled",
+      ],
+    },
   },
 } as const
