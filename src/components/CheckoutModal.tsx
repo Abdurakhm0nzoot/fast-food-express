@@ -8,15 +8,17 @@ import { useMemo, useState } from "react";
 import { MapPin, Clock, Check, Phone } from "lucide-react";
 import { toast } from "sonner";
 import { useServerFn } from "@tanstack/react-start";
-import { sendOrder } from "@/lib/telegram.functions";
+import { createOrder } from "@/lib/orders.functions";
+import { useNavigate } from "@tanstack/react-router";
 
 export function CheckoutModal() {
   const { t } = useI18n();
+  const navigate = useNavigate();
   const { checkoutOpen, setCheckoutOpen, items, address, phone, setAddressOpen, setLoginOpen, clear } = useApp();
   const [note, setNote] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  const submitOrder = useServerFn(sendOrder);
+  const submitOrder = useServerFn(createOrder);
 
   const total = useMemo(() => {
     const subtotal = items.reduce((s, i) => {
@@ -30,6 +32,18 @@ export function CheckoutModal() {
   const submit = async () => {
     if (!phone) { setLoginOpen(true); return; }
     if (!address) { setAddressOpen(true); return; }
+    // Normalize phone to +998XXXXXXXXX
+    const normalizedPhone = phone.replace(/\s+/g, "");
+    if (!/^\+998\d{9}$/.test(normalizedPhone)) {
+      toast.error("Telefon raqam noto'g'ri. +998XXXXXXXXX formatda kiriting.");
+      setLoginOpen(true);
+      return;
+    }
+    if (typeof address.lat !== "number" || typeof address.lng !== "number") {
+      toast.error("Manzilni xaritada belgilang.");
+      setAddressOpen(true);
+      return;
+    }
     setSubmitting(true);
     try {
       const orderItems = items.map((i) => {
@@ -38,7 +52,7 @@ export function CheckoutModal() {
       });
       const res = await submitOrder({
         data: {
-          phone,
+          phone: normalizedPhone,
           address: address.formatted,
           entrance: address.entrance ?? "",
           lat: address.lat,
@@ -48,15 +62,22 @@ export function CheckoutModal() {
           subtotal: total.subtotal,
           delivery: total.delivery,
           total: total.total,
+          source: "site",
         },
       });
-      toast.success(`${t("checkout.success")} (${res.orderId})`);
+      toast.success(`${t("checkout.success")} (${res.orderCode})`);
       clear();
       setCheckoutOpen(false);
       setNote("");
-    } catch (e) {
+      navigate({ to: "/order/$code", params: { code: res.orderCode } });
+    } catch (e: any) {
       console.error(e);
-      toast.error("Buyurtmani yuborib bo'lmadi. Qaytadan urinib ko'ring.");
+      const msg = e?.message?.includes("Toshkent")
+        ? "Manzil Toshkent shahar hududidan tashqarida"
+        : e?.message?.includes("Telefon")
+          ? "Telefon raqam noto'g'ri"
+          : "Buyurtmani yuborib bo'lmadi. Qaytadan urinib ko'ring.";
+      toast.error(msg);
     } finally {
       setSubmitting(false);
     }

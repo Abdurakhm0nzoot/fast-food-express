@@ -107,8 +107,38 @@ function renderPopular() {
   return `🔥 <b>Mashhur taomlar</b>\n\n${body}\n\n🛒 Buyurtma berish: ${SITE_URL}`;
 }
 
+async function handleStartOrder(chatId: number, orderCode: string) {
+  const { supabaseAdmin } = await import("@/lib/orders.server");
+  const { data: order } = await supabaseAdmin
+    .from("orders")
+    .select("*")
+    .eq("order_code", orderCode)
+    .maybeSingle();
+  if (!order) {
+    await send(chatId, `❌ Buyurtma <b>${escapeHtml(orderCode)}</b> topilmadi.`, MAIN_KEYBOARD);
+    return;
+  }
+  await supabaseAdmin
+    .from("telegram_links")
+    .upsert({ phone: order.phone, chat_id: chatId, bot: "customer" }, { onConflict: "phone,bot" });
+  await supabaseAdmin.from("orders").update({ customer_chat_id: chatId }).eq("id", order.id);
+  const { STATUS_LABEL, STATUS_CUSTOMER_MSG } = await import("@/lib/orders.server");
+  await send(
+    chatId,
+    `✅ <b>${escapeHtml(orderCode)}</b> kuzatishga ulandingiz!\n\n${STATUS_CUSTOMER_MSG[order.status as keyof typeof STATUS_CUSTOMER_MSG]}\n\nHolat: <b>${STATUS_LABEL[order.status as keyof typeof STATUS_LABEL]}</b>\n\nStatus o'zgarganda sizga avtomatik xabar yuboramiz.`,
+    MAIN_KEYBOARD,
+  );
+}
+
 async function handleText(chatId: number, text: string, name: string) {
   const t = text.trim();
+
+  // Deep-link: /start order_OL-XXX
+  const startMatch = t.match(/^\/start(?:@\S+)?\s+order_(.+)$/);
+  if (startMatch) {
+    await handleStartOrder(chatId, startMatch[1]);
+    return;
+  }
 
   if (t === "/start" || t.startsWith("/start@")) {
     await send(chatId, welcomeText(name, chatId), MAIN_KEYBOARD);

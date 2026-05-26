@@ -13,6 +13,7 @@ import { Route as ContactsRouteImport } from './routes/contacts'
 import { Route as BranchesRouteImport } from './routes/branches'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as OrderCodeRouteImport } from './routes/order.$code'
 import { Route as ApiPublicTelegramWebhookRouteImport } from './routes/api/public/telegram/webhook'
 import { Route as ApiPublicTelegramSellerWebhookRouteImport } from './routes/api/public/telegram/seller-webhook'
 
@@ -36,6 +37,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrderCodeRoute = OrderCodeRouteImport.update({
+  id: '/order/$code',
+  path: '/order/$code',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicTelegramWebhookRoute =
   ApiPublicTelegramWebhookRouteImport.update({
     id: '/api/public/telegram/webhook',
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/branches': typeof BranchesRoute
   '/contacts': typeof ContactsRoute
+  '/order/$code': typeof OrderCodeRoute
   '/api/public/telegram/seller-webhook': typeof ApiPublicTelegramSellerWebhookRoute
   '/api/public/telegram/webhook': typeof ApiPublicTelegramWebhookRoute
 }
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/branches': typeof BranchesRoute
   '/contacts': typeof ContactsRoute
+  '/order/$code': typeof OrderCodeRoute
   '/api/public/telegram/seller-webhook': typeof ApiPublicTelegramSellerWebhookRoute
   '/api/public/telegram/webhook': typeof ApiPublicTelegramWebhookRoute
 }
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/branches': typeof BranchesRoute
   '/contacts': typeof ContactsRoute
+  '/order/$code': typeof OrderCodeRoute
   '/api/public/telegram/seller-webhook': typeof ApiPublicTelegramSellerWebhookRoute
   '/api/public/telegram/webhook': typeof ApiPublicTelegramWebhookRoute
 }
@@ -81,6 +90,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/branches'
     | '/contacts'
+    | '/order/$code'
     | '/api/public/telegram/seller-webhook'
     | '/api/public/telegram/webhook'
   fileRoutesByTo: FileRoutesByTo
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/branches'
     | '/contacts'
+    | '/order/$code'
     | '/api/public/telegram/seller-webhook'
     | '/api/public/telegram/webhook'
   id:
@@ -97,6 +108,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/branches'
     | '/contacts'
+    | '/order/$code'
     | '/api/public/telegram/seller-webhook'
     | '/api/public/telegram/webhook'
   fileRoutesById: FileRoutesById
@@ -106,6 +118,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BranchesRoute: typeof BranchesRoute
   ContactsRoute: typeof ContactsRoute
+  OrderCodeRoute: typeof OrderCodeRoute
   ApiPublicTelegramSellerWebhookRoute: typeof ApiPublicTelegramSellerWebhookRoute
   ApiPublicTelegramWebhookRoute: typeof ApiPublicTelegramWebhookRoute
 }
@@ -140,6 +153,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/order/$code': {
+      id: '/order/$code'
+      path: '/order/$code'
+      fullPath: '/order/$code'
+      preLoaderRoute: typeof OrderCodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/telegram/webhook': {
       id: '/api/public/telegram/webhook'
       path: '/api/public/telegram/webhook'
@@ -162,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BranchesRoute: BranchesRoute,
   ContactsRoute: ContactsRoute,
+  OrderCodeRoute: OrderCodeRoute,
   ApiPublicTelegramSellerWebhookRoute: ApiPublicTelegramSellerWebhookRoute,
   ApiPublicTelegramWebhookRoute: ApiPublicTelegramWebhookRoute,
 }
