@@ -86,26 +86,17 @@ export const createOrder = createServerFn({ method: "POST" })
         .eq("id", created.id);
     }
 
-    // Send to admin + seller (fire and forget but await for message IDs)
+    // Buyurtma faqat admin botga boradi. Sotuvchi bot — mijozlar uchun (menyu/buyurtma berish).
     const orderWithChat = { ...created, customer_chat_id: customerChatId };
-    const [adminMid, sellerMid] = await Promise.all([
-      sendAdminOrder(orderWithChat).catch((e) => {
-        console.error("admin send fail", e);
-        return null;
-      }),
-      sendSellerOrder(orderWithChat).catch((e) => {
-        console.error("seller send fail", e);
-        return null;
-      }),
-    ]);
+    const adminMid = await sendAdminOrder(orderWithChat).catch((e) => {
+      console.error("admin send fail", e);
+      return null;
+    });
 
-    if (adminMid || sellerMid) {
+    if (adminMid) {
       await supabaseAdmin
         .from("orders")
-        .update({
-          admin_message_id: adminMid ?? null,
-          seller_message_id: sellerMid ?? null,
-        })
+        .update({ admin_message_id: adminMid ?? null })
         .eq("id", created.id);
     }
 
