@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      bot_sessions: {
+        Row: {
+          bot: string
+          chat_id: number
+          state: Json
+          updated_at: string
+        }
+        Insert: {
+          bot?: string
+          chat_id: number
+          state?: Json
+          updated_at?: string
+        }
+        Update: {
+          bot?: string
+          chat_id?: number
+          state?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
       orders: {
         Row: {
           address: string
